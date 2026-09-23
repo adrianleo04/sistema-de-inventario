@@ -4,6 +4,7 @@ use App\Http\Controllers\AreaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\MovimientoInventarioController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\SucursalController;
@@ -33,6 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('unidades', UnidadMedidaController::class)->except(['create', 'edit', 'show']);
     Route::resource('proveedores', ProveedorController::class)->except(['create', 'edit', 'show']);
     Route::resource('items', ItemController::class);
+
+    // Núcleo de Movimientos de Inventario
+    Route::get('/movimientos/stock-disponible', [MovimientoInventarioController::class, 'getStockDisponible'])->name('movimientos.stock');
+    Route::resource('movimientos', MovimientoInventarioController::class)->only(['index', 'create', 'store']);
 });
 
 require __DIR__.'/auth.php';

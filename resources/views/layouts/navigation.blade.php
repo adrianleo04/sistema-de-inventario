@@ -43,6 +43,12 @@
                     </x-nav-link>
                     @endcan
 
+                    @can('movimientos.ver')
+                    <x-nav-link :href="route('movimientos.index')" :active="request()->routeIs('movimientos.*')" class="text-white hover:text-indigo-200">
+                        {{ __('Movimientos') }}
+                    </x-nav-link>
+                    @endcan
+
                     @can('catalogos.ver')
                     <div class="hidden sm:flex sm:items-center">
                         <x-dropdown align="left" width="48">
@@ -147,6 +153,12 @@
             @can('items.ver')
             <x-responsive-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')" class="text-white">
                 {{ __('Catálogo (Ítems)') }}
+            </x-responsive-nav-link>
+            @endcan
+
+            @can('movimientos.ver')
+            <x-responsive-nav-link :href="route('movimientos.index')" :active="request()->routeIs('movimientos.*')" class="text-white">
+                {{ __('Movimientos') }}
             </x-responsive-nav-link>
             @endcan
 
