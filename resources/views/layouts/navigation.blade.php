@@ -36,6 +36,32 @@
                         {{ __('Áreas') }}
                     </x-nav-link>
                     @endcan
+
+                    @can('items.ver')
+                    <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')" class="text-white hover:text-indigo-200">
+                        {{ __('Catálogo (Ítems)') }}
+                    </x-nav-link>
+                    @endcan
+
+                    @can('catalogos.ver')
+                    <div class="hidden sm:flex sm:items-center">
+                        <x-dropdown align="left" width="48">
+                            <x-slot name="trigger">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-800 hover:bg-indigo-700 focus:outline-none transition ease-in-out duration-150">
+                                    <span>{{ __('Tablas Catálogo') }}</span>
+                                    <svg class="ms-1 fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('categorias.index')">Categorías</x-dropdown-link>
+                                <x-dropdown-link :href="route('unidades.index')">Unidades de Medida</x-dropdown-link>
+                                <x-dropdown-link :href="route('proveedores.index')">Proveedores</x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+                    @endcan
                 </div>
             </div>
 
@@ -115,6 +141,24 @@
             @can('areas.ver')
             <x-responsive-nav-link :href="route('areas.index')" :active="request()->routeIs('areas.*')" class="text-white">
                 {{ __('Áreas') }}
+            </x-responsive-nav-link>
+            @endcan
+
+            @can('items.ver')
+            <x-responsive-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')" class="text-white">
+                {{ __('Catálogo (Ítems)') }}
+            </x-responsive-nav-link>
+            @endcan
+
+            @can('catalogos.ver')
+            <x-responsive-nav-link :href="route('categorias.index')" :active="request()->routeIs('categorias.*')" class="text-white">
+                {{ __('Categorías') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('unidades.index')" :active="request()->routeIs('unidades.*')" class="text-white">
+                {{ __('Unidades de Medida') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('proveedores.index')" :active="request()->routeIs('proveedores.*')" class="text-white">
+                {{ __('Proveedores') }}
             </x-responsive-nav-link>
             @endcan
         </div>
